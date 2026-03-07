@@ -109,5 +109,5 @@ This project is currently unlicensed. All rights reserved.
 ---
 
 <div align="center">
-<sub>Built for people who think deeply and write seriously.</sub>
+<sub>Rambly - Built for people who think deeply and write seriously.</sub>
 </div>
