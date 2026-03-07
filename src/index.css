@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  @apply antialiased;
+  background-color: #FAFAF8;
+  background-image: repeating-conic-gradient(rgba(0, 0, 0, 0.10) 0% 25%, transparent 0% 70%);
+  background-size: 32px 32px;
+  color: #1A1A2E;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - thinner on mobile */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+@media (min-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E0E0DE;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C8C8C6;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #1A1A2E;
+}
+
+/* Prose overrides for polished notes */
+.prose h1,
+.prose h2,
+.prose h3 {
+  letter-spacing: -0.02em;
+}
+
+.prose p {
+  line-height: 1.75;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+input,
+textarea {
+  transition: all 0.2s ease;
+}
+
+/* Mobile Safe Areas */
+@layer utilities {
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0.75rem);
+  }
+
+  @media (min-width: 640px) {
+    .safe-top {
+      padding-top: max(env(safe-area-inset-top), 1rem);
+    }
+  }
+
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Rambly",
+    "short_name": "Rambly",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "type": "image/svg+xml",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#FAFAF8",
+    "background_color": "#FAFAF8"
+}

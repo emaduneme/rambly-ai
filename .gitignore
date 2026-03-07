@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Environment variables (SECRETS!)
+.env
+.env.*
+
+# Build output
+dist/
+
+# Vercel
+.vercel
+
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archive / scratch files
+_archive/
+whispermodel.ipynb
+
+# Internal planning docs
+Hackathon-Competition-Plan.txt
+elevated_plan.md
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
