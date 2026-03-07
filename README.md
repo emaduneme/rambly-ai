@@ -1,20 +1,122 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
+# 🎙️ Rambly
+
+**Turn your messy voice recordings into clean, perfectly structured notes.**
+
+*Think out loud. Get back clarity.*
+
+[![Built with Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-Deployed-000?logo=vercel)](https://vercel.com/)
+
 </div>
 
-# Run and deploy your AI Studio app
+---
 
-This contains everything you need to run your app locally.
+## The Problem
 
-View your app in AI Studio: https://ai.studio/apps/a5243266-eea3-496e-8c0c-5c7bca595e60
+Thinking is non-linear. Writing is linear. The gap between the two is where ideas die.
 
-## Run Locally
+Most people — researchers, writers, students, thinkers — have more ideas than they can type. Voice is the fastest way to capture raw thought, but raw voice is messy. Rambly bridges that gap for people who think deeply and write seriously.
 
-**Prerequisites:**  Node.js
+## How It Works
 
+1. **Record** — Tap the mic and start talking. No friction, no setup.
+2. **Choose a Context** — Tell Rambly *what kind* of writing this is (academic, blog, journal, work notes).
+3. **Get structured output** — Rambly transcribes and transforms your ramble into clean, organized text in seconds.
+4. **Save & revisit** — Every recording lives in your personal library, searchable and exportable.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Key Features
+
+- 🎤 **One-tap recording** — minimal UI, zero cognitive load
+- 🧠 **Contextual processing** — assign contexts (e.g. *"dissertation"*, *"travel blog"*, *"morning journal"*) so Rambly adapts its output to your intent
+- ✍️ **Fidelity control** — choose how much Rambly rewrites: from raw transcript to full polish
+- 📚 **Note library** — search, revisit, and re-export past recordings
+- 🌙 **Dark mode** — built-in from day one
+- ⚡ **Fast** — voice → structured text in seconds, powered by Google Gemini
+
+## What Makes Rambly Different
+
+Inspired by [AudioPen](https://audiopen.ai/), Rambly is built to go further:
+
+| AudioPen | Rambly |
+|---|---|
+| Over-rewrites, loses nuance | **Fidelity control** — you decide how much editing happens |
+| No processing context | **Contexts** — persistent backgrounds that shape output |
+| Generic output style | Preserves your **voice, tone, and specific claims** |
+| Simple export | Structured library with search and history |
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 19, TypeScript, Tailwind CSS v4, Framer Motion |
+| **AI** | Google Gemini (transcription + processing) |
+| **Backend** | Vercel Serverless Functions |
+| **Build** | Vite 6 |
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+)
+- A [Google Gemini API key](https://ai.google.dev/)
+
+### Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/emaduneme/rambly-ai.git
+cd rambly-ai
+
+# Install dependencies
+npm install
+
+# Create your environment file
+cp .env.example .env
+# Then add your API key to .env:
+# GEMINI_API_KEY=your_key_here
+
+# Start the dev server
+npm run dev
+```
+
+The app will be running at `http://localhost:3000`.
+
+## Project Structure
+
+```
+rambly/
+├── api/                  # Vercel serverless functions
+│   ├── process.ts        # AI text processing endpoint
+│   └── transcribe.ts     # Audio transcription endpoint
+├── src/
+│   ├── components/       # React UI components
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utilities, AI client, storage
+│   ├── App.tsx           # Main application
+│   └── main.tsx          # Entry point
+├── public/               # Static assets
+└── index.html            # HTML shell
+```
+
+## Roadmap
+
+- [ ] Fidelity control (Raw → Light → Standard → Full)
+- [ ] Custom prompt templates
+- [ ] Export to Markdown / PDF
+- [ ] Extended recording length (45+ minutes)
+- [ ] Native mobile apps (iOS & Android)
+- [ ] Integrations (Notion, Obsidian, Google Docs)
+
+## License
+
+This project is currently unlicensed. All rights reserved.
+
+---
+
+<div align="center">
+<sub>Built for people who think deeply and write seriously.</sub>
+</div>
