@@ -6,7 +6,6 @@
 
 *Think out loud. Get back clarity.*
 
-[![Built with Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Deployed on Vercel](https://img.shields.io/badge/Vercel-Deployed-000?logo=vercel)](https://vercel.com/)
@@ -47,6 +46,14 @@ Inspired by [AudioPen](https://audiopen.ai/), Rambly is built to go further:
 | No processing context | **Contexts** — persistent backgrounds that shape output |
 | Generic output style | Preserves your **voice, tone, and specific claims** |
 | Simple export | Structured library with search and history |
+
+## Built With
+
+| Tool | Role |
+|---|---|
+| **Google Antigravity** | Rapid prototyping and app scaffolding |
+| **Claude Code** | Brainstorming and debugging |
+| **Google Stitch** | UI/UX design |
 
 ## Tech Stack
 
