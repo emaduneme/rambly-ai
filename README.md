@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🎙️ Rambly
+<img src="public/rambly-git-readme image.png" alt="Rambly" width="100%" />
+
+# Rambly
 
 **Turn your messy voice recordings into clean, perfectly structured notes.**
 
