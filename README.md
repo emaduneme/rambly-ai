@@ -38,16 +38,6 @@ Most people — researchers, writers, students, thinkers — have more ideas tha
 - 🌙 **Dark mode** — built-in from day one
 - ⚡ **Fast** — voice → structured text in seconds, powered by Google Gemini
 
-## What Makes Rambly Different
-
-Inspired by [AudioPen](https://audiopen.ai/), Rambly is built to go further:
-
-| AudioPen | Rambly |
-|---|---|
-| Over-rewrites, loses nuance | **Fidelity control** — you decide how much editing happens |
-| No processing context | **Contexts** — persistent backgrounds that shape output |
-| Generic output style | Preserves your **voice, tone, and specific claims** |
-| Simple export | Structured library with search and history |
 
 ## Built With
 
@@ -111,14 +101,6 @@ rambly/
 └── index.html            # HTML shell
 ```
 
-## Roadmap
-
-- [ ] Fidelity control (Raw → Light → Standard → Full)
-- [ ] Custom prompt templates
-- [ ] Export to Markdown / PDF
-- [ ] Extended recording length (45+ minutes)
-- [ ] Native mobile apps (iOS & Android)
-- [ ] Integrations (Notion, Obsidian, Google Docs)
 
 ## License
 
