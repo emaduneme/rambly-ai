@@ -74,6 +74,21 @@ export const storage = {
         }
     },
 
+    updateNote: (id: string, content: string): Note | null => {
+        try {
+            const existing = storage.getNotes();
+            const index = existing.findIndex(note => note.id === id);
+            if (index === -1) return null;
+
+            existing[index] = { ...existing[index], content };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+            return existing[index];
+        } catch (e) {
+            console.error('Failed to update note in local storage', e);
+            return null;
+        }
+    },
+
     deleteNote: (id: string): void => {
         try {
             const existing = storage.getNotes();

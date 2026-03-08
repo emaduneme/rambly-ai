@@ -23,9 +23,9 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
                     <span className="text-[17px] font-bold tracking-tight text-[#1A1A2E]">Rambly</span>
                 </div>
 
-                <button className="px-5 py-2 sm:px-6 sm:py-2.5 flex items-center justify-center bg-white border border-gray-200/80 text-[#1A1A2E] hover:bg-indigo-50 hover:text-indigo-600 rounded-full text-sm sm:text-[15px] font-medium tracking-wide shadow-sm hover:shadow transition-all duration-300">
+                <a href="https://youtu.be/BzVev97bpjk" target="_blank" rel="noopener noreferrer" className="px-5 py-2 sm:px-6 sm:py-2.5 flex items-center justify-center bg-white border border-gray-200/80 text-[#1A1A2E] hover:bg-indigo-50 hover:text-indigo-600 rounded-full text-sm sm:text-[15px] font-medium tracking-wide shadow-sm hover:shadow transition-all duration-300">
                     How it works
-                </button>
+                </a>
             </header>
 
             {/* Main Hero Section */}

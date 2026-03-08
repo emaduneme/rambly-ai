@@ -31,3 +31,6 @@ elevated_plan.md
 .vscode/
 *.swp
 *.swo
+
+# Claude Code
+.claude/

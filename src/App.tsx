@@ -135,9 +135,14 @@ export default function App() {
         },
         currentAbortController.signal
       );
-      // Save the newly refined version to history
-      const savedNote = storage.saveNote(finalContent, activeContext, rawTranscriptRef.current || undefined);
-      setSelectedNote(savedNote);
+      // Update the existing note in-place instead of creating a new one
+      if (selectedNote?.id) {
+        const updatedNote = storage.updateNote(selectedNote.id, finalContent);
+        if (updatedNote) setSelectedNote(updatedNote);
+      } else {
+        const savedNote = storage.saveNote(finalContent, activeContext, rawTranscriptRef.current || undefined);
+        setSelectedNote(savedNote);
+      }
       setRefreshLibraryTrigger(prev => prev + 1);
 
       setIsRefined(true);
