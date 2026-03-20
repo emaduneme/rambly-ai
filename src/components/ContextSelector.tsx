@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import React, { useState, useId, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Check } from 'lucide-react';
 import { ContextProfile, DEFAULT_CONTEXTS } from '../lib/contexts';
@@ -12,10 +12,22 @@ interface ContextSelectorProps {
 export const ContextSelector: React.FC<ContextSelectorProps> = ({ activeContext, onSelectContext, disabled }) => {
     const [isOpen, setIsOpen] = useState(false);
     const menuId = useId();
+    const triggerRef = useRef<HTMLButtonElement | null>(null);
+    const menuRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            const firstItem = menuRef.current?.querySelector<HTMLButtonElement>('button[role="menuitem"]');
+            firstItem?.focus();
+        } else {
+            triggerRef.current?.focus();
+        }
+    }, [isOpen]);
 
     return (
         <div className="relative z-20 flex items-center justify-center">
             <button
+                ref={triggerRef}
                 onClick={() => setIsOpen(!isOpen)}
                 disabled={disabled}
                 aria-haspopup="menu"
@@ -32,6 +44,10 @@ export const ContextSelector: React.FC<ContextSelectorProps> = ({ activeContext,
                 onKeyDown={(event) => {
                     if (event.key === 'Escape') {
                         setIsOpen(false);
+                    }
+                    if (event.key === 'ArrowDown' && !isOpen) {
+                        event.preventDefault();
+                        setIsOpen(true);
                     }
                 }}
             >
@@ -54,9 +70,32 @@ export const ContextSelector: React.FC<ContextSelectorProps> = ({ activeContext,
                             id={menuId}
                             role="menu"
                             aria-label="Persona options"
+                            ref={menuRef}
                             onKeyDown={(event) => {
                                 if (event.key === 'Escape') {
+                                    event.preventDefault();
                                     setIsOpen(false);
+                                    return;
+                                }
+
+                                const items = menuRef.current?.querySelectorAll<HTMLButtonElement>('button[role="menuitem"]');
+                                if (!items || items.length === 0) return;
+
+                                const currentIndex = Array.from(items).findIndex((item) => item === document.activeElement);
+                                if (event.key === 'ArrowDown') {
+                                    event.preventDefault();
+                                    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % items.length;
+                                    items[nextIndex].focus();
+                                }
+                                if (event.key === 'ArrowUp') {
+                                    event.preventDefault();
+                                    const prevIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+                                    items[prevIndex].focus();
+                                }
+                                if (event.key === 'Tab') {
+                                    event.preventDefault();
+                                    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + (event.shiftKey ? -1 : 1) + items.length) % items.length;
+                                    items[nextIndex].focus();
                                 }
                             }}
                         >
