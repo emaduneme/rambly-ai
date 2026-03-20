@@ -1,6 +1,8 @@
 import { GoogleGenAI } from '@google/genai';
 
 const MODEL_NAME_AUDIO = 'gemini-2.5-flash';
+const MAX_AUDIO_BASE64_CHARS = 8000000;
+const MAX_MIME_TYPE_CHARS = 100;
 
 export const config = {
     runtime: 'edge',
@@ -17,6 +19,24 @@ export async function POST(req: Request) {
 
         if (!audioBase64 || !mimeType) {
             return new Response(JSON.stringify({ error: 'Missing audio data or mimeType' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+        if (typeof audioBase64 !== 'string' || typeof mimeType !== 'string') {
+            return new Response(JSON.stringify({ error: 'Invalid request payload' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+        if (audioBase64.length > MAX_AUDIO_BASE64_CHARS) {
+            return new Response(JSON.stringify({ error: 'Audio payload too large' }), {
+                status: 413,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+        if (mimeType.length > MAX_MIME_TYPE_CHARS) {
+            return new Response(JSON.stringify({ error: 'Invalid mimeType' }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' },
             });

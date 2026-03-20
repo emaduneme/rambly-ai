@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Copy, Check, Sparkles, ArrowLeft, Clock, Tag, Plus } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 interface NoteAreaProps {
   content: string;
@@ -49,6 +49,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isShowingRaw, setIsShowingRaw] = React.useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -78,6 +79,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
           className="flex flex-col items-center gap-4"
         >
           <div className="relative">
@@ -116,12 +118,12 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
           className="mb-6 sm:mb-8"
         >
           <button
             onClick={onGoBack}
-            className="flex items-center gap-1.5 text-[15px] font-medium text-gray-400 hover:text-indigo-600 transition-colors duration-200 group mb-4"
+            className="flex items-center gap-1.5 text-[15px] font-medium text-gray-400 hover:text-indigo-600 transition-colors duration-200 group mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
           >
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform duration-200" />
             Back to library
@@ -152,7 +154,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                   <motion.button
                     onClick={() => setIsShowingRaw(!isShowingRaw)}
                     whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 border shadow-sm ${isShowingRaw
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 ${isShowingRaw
                       ? 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100 hover:border-orange-300'
                       : 'bg-white text-gray-500 hover:text-orange-500 border-gray-200 hover:border-orange-200'
                       }`}
@@ -164,7 +166,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                   <motion.button
                     onClick={onRefine}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-white text-gray-600 hover:text-indigo-600 border border-gray-200 hover:border-indigo-200 shadow-sm hover:shadow"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-white text-gray-600 hover:text-indigo-600 border border-gray-200 hover:border-indigo-200 shadow-sm hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2"
                   >
                     <Sparkles size={16} />
                     Polish further
@@ -173,7 +175,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                 <motion.button
                   onClick={onCopy}
                   whileTap={{ scale: 0.93 }}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${copied
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 ${copied
                     ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 shadow-sm'
                     : 'bg-white text-gray-600 hover:text-[#1A1A2E] border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow'
                     }`}
@@ -210,6 +212,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
           className={`prose prose-base sm:prose-lg prose-slate max-w-none
             prose-headings:text-[#1A1A2E] prose-headings:font-semibold prose-headings:tracking-tight
             prose-p:text-gray-600 prose-p:leading-relaxed prose-p:text-[17px] sm:prose-p:text-[19px]

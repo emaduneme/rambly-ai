@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Mic, Square, Trash2, Plus, X } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ContextSelector } from './ContextSelector';
 import { ContextProfile } from '../lib/contexts';
 
@@ -32,6 +32,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!analyser || !canvasRef.current || !isRecording) {
@@ -111,7 +112,7 @@ export const Footer: React.FC<FooterProps> = ({
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 40, opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
               className="w-full mb-2 sm:mb-3 overflow-hidden"
             >
               <canvas
@@ -119,6 +120,8 @@ export const Footer: React.FC<FooterProps> = ({
                 width={400}
                 height={40}
                 className="w-full h-10"
+                aria-hidden="true"
+                role="presentation"
               />
             </motion.div>
           )}
@@ -131,6 +134,7 @@ export const Footer: React.FC<FooterProps> = ({
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
               className="mb-2 sm:mb-3 font-mono text-base sm:text-lg font-medium text-indigo-500 tabular-nums"
             >
               {formatTime(recordingTime)}
@@ -143,8 +147,9 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex-1 flex justify-start min-w-[70px]">
             <button
               onClick={onClear}
+              aria-label={isProcessing ? "Cancel processing" : hasContent ? "Start a new note" : "Clear"}
               className={cn(
-                "px-3 py-2 rounded-2xl transition-all duration-200 flex items-center gap-1.5",
+                "px-3 py-2 rounded-2xl transition-all duration-200 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2",
                 isProcessing
                   ? "text-red-400 hover:text-red-600 hover:bg-red-50"
                   : hasContent && !isRecording
@@ -173,7 +178,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Main Record Button (Center block) */}
           <div className="flex-shrink-0 relative">
             {/* Pulsing ring */}
-            {isRecording && (
+            {isRecording && !prefersReducedMotion && (
               <motion.div
                 initial={{ scale: 1, opacity: 0.5 }}
                 animate={{ scale: 1.4, opacity: 0 }}
@@ -184,8 +189,10 @@ export const Footer: React.FC<FooterProps> = ({
             <button
               onClick={isRecording ? onStopRecording : onStartRecording}
               disabled={isProcessing}
+              aria-label={isRecording ? "Stop recording" : "Start recording"}
+              aria-pressed={isRecording}
               className={cn(
-                "relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95",
+                "relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2",
                 isRecording
                   ? "bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-200"
                   : isProcessing
@@ -211,7 +218,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        <div className="mt-3 text-xs text-gray-400 font-medium">
+        <div className="mt-3 text-xs text-gray-400 font-medium" role="status" aria-live="polite">
           {isProcessing
             ? 'Processing your thoughts...'
             : isRecording

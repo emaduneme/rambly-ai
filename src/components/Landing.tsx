@@ -1,12 +1,12 @@
 import React from 'react';
-import { User, Mic } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface LandingProps {
     onStart: () => void;
 }
 
 export const Landing: React.FC<LandingProps> = ({ onStart }) => {
+    const prefersReducedMotion = useReducedMotion();
     return (
         <div className="min-h-screen bg-[#FAFAF8] flex flex-col font-sans text-[#1A1A2E] overflow-hidden selection:bg-indigo-100 selection:text-indigo-900">
 
@@ -23,7 +23,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
                     <span className="text-[17px] font-bold tracking-tight text-[#1A1A2E]">Rambly</span>
                 </div>
 
-                <a href="https://youtu.be/BzVev97bpjk" target="_blank" rel="noopener noreferrer" className="px-5 py-2 sm:px-6 sm:py-2.5 flex items-center justify-center bg-white border border-gray-200/80 text-[#1A1A2E] hover:bg-indigo-50 hover:text-indigo-600 rounded-full text-sm sm:text-[15px] font-medium tracking-wide shadow-sm hover:shadow transition-all duration-300">
+                <a href="https://youtu.be/BzVev97bpjk" target="_blank" rel="noopener noreferrer" className="px-5 py-2 sm:px-6 sm:py-2.5 flex items-center justify-center bg-white border border-gray-200/80 text-[#1A1A2E] hover:bg-indigo-50 hover:text-indigo-600 rounded-full text-sm sm:text-[15px] font-medium tracking-wide shadow-sm hover:shadow transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2">
                     How it works
                 </a>
             </header>
@@ -33,7 +33,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: prefersReducedMotion ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center w-full"
                 >
                     {/* Headline */}
@@ -51,7 +51,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                         <button
                             onClick={onStart}
-                            className="px-8 py-4 sm:px-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 text-white rounded-full text-[17px] font-semibold tracking-wide shadow-lg shadow-indigo-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+                            className="px-8 py-4 sm:px-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 text-white rounded-full text-[17px] font-semibold tracking-wide shadow-lg shadow-indigo-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2"
                         >
                             Get Started
                         </button>

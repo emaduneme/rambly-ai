@@ -1,6 +1,9 @@
 import { GoogleGenAI } from '@google/genai';
 
 const MODEL_NAME_TEXT = 'gemini-3-flash-preview';
+const MAX_RAW_TEXT_CHARS = 20000;
+const MAX_CONTEXT_INSTRUCTION_CHARS = 600;
+const ALLOWED_FIDELITY = new Set(['raw', 'light', 'standard', 'full']);
 
 export const config = {
     runtime: 'edge', // Use Edge runtime for better streaming performance
@@ -16,6 +19,15 @@ export async function POST(req: Request) {
 
         if (!rawText || !fidelity) {
             return new Response(JSON.stringify({ error: 'Missing rawText or fidelity' }), { status: 400 });
+        }
+        if (typeof rawText !== 'string' || typeof fidelity !== 'string') {
+            return new Response(JSON.stringify({ error: 'Invalid request payload' }), { status: 400 });
+        }
+        if (!ALLOWED_FIDELITY.has(fidelity)) {
+            return new Response(JSON.stringify({ error: 'Invalid fidelity value' }), { status: 400 });
+        }
+        if (rawText.length > MAX_RAW_TEXT_CHARS) {
+            return new Response(JSON.stringify({ error: 'Raw text too large' }), { status: 413 });
         }
 
         let fidelityInstructions = '';
@@ -68,8 +80,12 @@ Your goal is to act as a world-class editor and perform a full rewrite for maxim
                 break;
         }
 
-        const contextInstructions = contextProfile
-            ? `\nCONTEXT INSTRUCTION:\n${contextProfile.instruction}\n`
+        const contextInstruction = contextProfile?.instruction && typeof contextProfile.instruction === 'string'
+            ? contextProfile.instruction.slice(0, MAX_CONTEXT_INSTRUCTION_CHARS)
+            : null;
+
+        const contextInstructions = contextInstruction
+            ? `\nCONTEXT INSTRUCTION:\n${contextInstruction}\n`
             : `\nCONTEXT INSTRUCTION:\nNo specific context provided. Use a neutral, clear voice.\n`;
 
         const prompt = `You are a world-class editor and AI assistant. 

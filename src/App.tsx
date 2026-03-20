@@ -5,15 +5,15 @@ import { Footer } from './components/Footer';
 import { Library } from './components/Library';
 import { Landing } from './components/Landing';
 import { useAudioRecorder } from './hooks/useAudioRecorder';
-import { processNoteStream } from './lib/gemini';
 import { storage, Note } from './lib/storage';
 import { ContextProfile, FidelityLevel } from './lib/contexts';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 // Auto-dismiss errors after 5 seconds
 const AUTO_DISMISS_MS = 5000;
 
 export default function App() {
+  const prefersReducedMotion = useReducedMotion();
   const [hasStarted, setHasStarted] = useState(() => localStorage.getItem('rambly_has_started') === 'true');
   const [activeContext, setActiveContext] = useState<ContextProfile | null>(null);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
@@ -48,7 +48,8 @@ export default function App() {
     error,
     startRecording,
     stopRecording,
-    resetRecording
+    resetRecording,
+    clearError
   } = useAudioRecorder();
 
   // Auto-transcribe when recording stops and audioBlob is available
@@ -70,7 +71,7 @@ export default function App() {
           const mimeType = blob.type || 'audio/webm';
 
           // 1. Get base transcript (We treat this as the foundation)
-          const { transcribeAudio } = await import('./lib/gemini');
+          const { transcribeAudio, processNoteStream } = await import('./lib/gemini');
           const transcription = await transcribeAudio(base64Audio, mimeType, currentAbortController.signal);
           rawTranscriptRef.current = transcription;
 
@@ -126,6 +127,7 @@ export default function App() {
     abortControllerRef.current = currentAbortController;
 
     try {
+      const { processNoteStream } = await import('./lib/gemini');
       const finalContent = await processNoteStream(
         content,
         'standard',
@@ -253,7 +255,7 @@ export default function App() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
         className="flex flex-col min-h-screen relative"
       >
         <Header
@@ -264,7 +266,6 @@ export default function App() {
             setHasStarted(false);
           }}
           hasContent={hasAnyContent}
-          isProcessing={isProcessing}
         />
 
         <main className="flex-1 flex flex-col items-center justify-start w-full mt-2 sm:mt-6">
@@ -276,13 +277,16 @@ export default function App() {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
                 className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg shadow-red-100/50 flex justify-between items-center gap-3"
                 role="alert"
               >
                 <p className="text-sm font-medium flex-1">{error || apiError}</p>
                 <button
-                  onClick={() => setApiError(null)}
+                  onClick={() => {
+                    setApiError(null);
+                    clearError();
+                  }}
                   className="text-red-400 hover:text-red-600 font-medium text-xs px-2 py-1 bg-red-100/60 hover:bg-red-100 rounded-lg transition-colors shrink-0"
                 >
                   Dismiss

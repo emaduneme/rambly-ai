@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Trash2, FileText, Sparkles, Save } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Trash2, Save } from 'lucide-react';
 import { storage, Note } from '../lib/storage';
 
 interface LibraryProps {
@@ -56,6 +56,7 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
     const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null);
     const [showingRawId, setShowingRawId] = useState<string | null>(null);
     const confirmTimeoutRef = useRef<number | null>(null);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         setNotes(storage.getNotes());
@@ -113,14 +114,25 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
                                 key={note.id}
                                 onClick={() => onSelectNote(note)}
-                                className="w-full bg-white rounded-[24px] p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 group relative flex flex-col min-h-[220px] overflow-hidden"
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault();
+                                        onSelectNote(note);
+                                    }
+                                }}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`Open note: ${parsed.title}`}
+                                className="w-full bg-white rounded-[24px] p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 group relative flex flex-col min-h-[220px] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
                             >
                                 {/* Side transcript tail */}
                                 {note.rawContent && (
                                     <button
                                         onClick={(e) => handleToggleRaw(e, note.id)}
+                                        aria-label={isShowingRaw ? 'View final note' : 'View original transcript'}
                                         className="absolute bottom-8 -right-[2px] px-3 py-2 bg-gradient-to-br from-indigo-500 to-violet-500 text-white rounded-l-xl shadow-md text-xs font-semibold tracking-wide opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-300 ease-out flex items-center gap-1.5 hover:shadow-indigo-200/50 hover:shadow-lg z-10 [writing-mode:vertical-rl] [text-orientation:mixed] sm:[writing-mode:horizontal-tb] sm:rounded-l-md sm:rounded-r-sm min-h-[100px] sm:min-h-0 min-w-[28px]"
                                     >
                                         {isShowingRaw ? 'View Final' : 'View Original'}
@@ -135,6 +147,7 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
                                 {/* Delete button absolutely positioned top right */}
                                 <button
                                     onClick={(e) => handleDeleteClick(e, note.id)}
+                                    aria-label={confirmingDeleteId === note.id ? 'Confirm delete note' : 'Delete note'}
                                     className={`absolute top-4 right-4 p-1.5 rounded-lg transition-all duration-200 text-xs font-medium z-10 ${confirmingDeleteId === note.id
                                         ? 'bg-red-50 text-red-500 border border-red-200 opacity-100'
                                         : 'text-gray-300 hover:text-red-500 hover:bg-red-50 opacity-100 sm:opacity-0 sm:group-hover:opacity-100'

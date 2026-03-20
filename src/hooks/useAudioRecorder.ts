@@ -129,6 +129,10 @@ export function useAudioRecorder() {
     setError(null);
   };
 
+  const clearError = () => {
+    setError(null);
+  };
+
   useEffect(() => {
     return () => {
       stopTimer();
@@ -149,6 +153,7 @@ export function useAudioRecorder() {
     error,
     startRecording,
     stopRecording,
-    resetRecording
+    resetRecording,
+    clearError
   };
 }
