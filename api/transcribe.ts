@@ -10,7 +10,7 @@ export const config = {
 
 // Initialize on the server
 const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY || process.env.OPENROUTER_API_KEY || '',
+    apiKey: process.env.GEMINI_API_KEY || '',
 });
 
 export async function POST(req: Request) {
