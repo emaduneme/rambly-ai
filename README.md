@@ -52,7 +52,7 @@ Most people — researchers, writers, students, thinkers — have more ideas tha
 | Layer | Technology |
 |---|---|
 | **Frontend** | React 19, TypeScript, Tailwind CSS v4, Framer Motion |
-| **AI** | Google Gemini (transcription + processing) |
+| **AI** | Google Gemini (audio transcription), Google Gemma via OpenRouter (text processing) |
 | **Backend** | Vercel Serverless Functions |
 | **Build** | Vite 6 |
 
@@ -61,7 +61,8 @@ Most people — researchers, writers, students, thinkers — have more ideas tha
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18+)
-- A [Google Gemini API key](https://ai.google.dev/)
+- A [Google Gemini API key](https://ai.google.dev/) (for audio transcription)
+- An [OpenRouter API key](https://openrouter.ai/) (for Google Gemma processing without strict rate limits)
 
 ### Setup
 
@@ -75,8 +76,9 @@ npm install
 
 # Create your environment file
 cp .env.example .env
-# Then add your API key to .env:
-# GEMINI_API_KEY=your_key_here
+# Then add your API keys to .env:
+# GEMINI_API_KEY=your_gemini_key_here
+# OPENROUTER_API_KEY=your_openrouter_key_here
 
 # Start the dev server
 npm run dev

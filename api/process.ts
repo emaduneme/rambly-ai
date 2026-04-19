@@ -1,6 +1,6 @@
-import { GoogleGenAI } from '@google/genai';
+import OpenAI from 'openai';
 
-const MODEL_NAME_TEXT = 'gemini-3-flash-preview';
+const MODEL_NAME_TEXT = 'google/gemma-3-27b-it';
 const MAX_RAW_TEXT_CHARS = 20000;
 const MAX_CONTEXT_INSTRUCTION_CHARS = 600;
 const ALLOWED_FIDELITY = new Set(['raw', 'light', 'standard', 'full']);
@@ -9,8 +9,9 @@ export const config = {
     runtime: 'edge', // Use Edge runtime for better streaming performance
 };
 
-const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY || process.env.OPENROUTER_API_KEY || '',
+const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY || '',
 });
 
 export async function POST(req: Request) {
@@ -98,11 +99,10 @@ ${contextInstructions}
 Raw transcription:
 ${rawText}`;
 
-        const responseStream = await ai.models.generateContentStream({
+        const responseStream = await openai.chat.completions.create({
             model: MODEL_NAME_TEXT,
-            contents: {
-                parts: [{ text: prompt }]
-            }
+            messages: [{ role: 'user', content: prompt }],
+            stream: true,
         });
 
         // Create a ReadableStream to stream the chunks back to the client
@@ -110,7 +110,7 @@ ${rawText}`;
             async start(controller) {
                 try {
                     for await (const chunk of responseStream) {
-                        const chunkText = chunk.text || '';
+                        const chunkText = chunk.choices[0]?.delta?.content || '';
                         if (chunkText) {
                             // We send raw text chunks as string encoding isn't needed with direct text streams
                             controller.enqueue(new TextEncoder().encode(chunkText));
