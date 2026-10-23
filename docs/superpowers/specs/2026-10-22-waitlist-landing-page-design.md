@@ -66,6 +66,40 @@ Follow the brief for structure and copy direction:
 
 **Design:** carry over the app's look so the brand is consistent: off-white `#FAFAF8` background, `#1A1A2E` text, a serif headline, the indigo-to-violet gradient on the button and logo. Reference galleries for layout ideas: supahero.io (hero sections), land-book.com (full pages), socialproofexamples.com (social proof without users). Everything above the fold must fit at 375px wide.
 
+### 3.1 Design principles (strict)
+
+Emmanuel asked for the page to follow Gestalt principles and core design principles strictly. Each rule below is a check the finished page must pass, at 375px and at desktop width. Where a gallery example conflicts with a rule, the rule wins.
+
+**Gestalt principles**
+
+| Principle | What it means | How the page applies it |
+|---|---|---|
+| Figure-ground | The eye separates the subject from the background | The email field and button are the clearest "figure" above the fold: the only gradient on screen and the strongest contrast. Nothing else competes with them for that treatment. |
+| Proximity | Things close together read as one group | Spacing does the grouping. The space inside a group (headline to subheadline, field to button) is clearly smaller than the space between groups (hero to bullets, section to section). Use one spacing scale (for example 4, 8, 16, 24, 48, 96px) and no one-off values. |
+| Similarity | Things that look alike read as alike | Every clickable thing looks clickable in the same way. The three objection bullets share one format; the three "how it works" steps share another. Nothing that isn't a button looks like one. |
+| Common region | Things inside one boundary read as one group | The form (field, button, one-line justification) sits in one region. Each FAQ item is its own region. Don't add borders or cards where spacing already does the job. |
+| Continuity | The eye follows lines and paths | One reading path from top to bottom: headline, subheadline, video, form, bullets. On desktop, a single centered or left-aligned column with no zigzag that breaks the path. The "how it works" steps run in a visible sequence (1, 2, 3). |
+| Closure | The mind completes partial shapes | Use sparingly and only in the logo or simple icons. Never let it make a control's edges unclear. |
+| Focal point | What's different gets noticed first | One focal point per screen. Above the fold, it's the call to action. The accent gradient is reserved for it (and the logo), so it stays the one thing that stands out. |
+| Prägnanz (simplicity) | People read the simplest form | Minimal shapes, no decorative clutter, no background patterns, no extra icons that don't carry meaning. If removing an element doesn't lose information, remove it. |
+| Symmetry and order | Balanced layouts feel stable and trustworthy | A consistent grid and alignment on every section. This audience is skeptical, and an orderly page reads as careful. |
+
+**Core design principles**
+
+| Principle | How the page applies it |
+|---|---|
+| Visual hierarchy | Three clear type levels above the fold: headline (largest, serif), subheadline (medium), everything else (body). Size, weight and color carry the order, never more than two typefaces. |
+| Contrast and accessibility | All text meets WCAG AA contrast (4.5:1 body, 3:1 large text), including gray text on `#FAFAF8` and white text on the gradient. Focus states are visible. The form works by keyboard and with a screen reader, with real labels, not placeholder-only fields. |
+| Alignment | Every element sits on a shared edge or center line. No element is "nearly" aligned. |
+| White space | Generous space around the hero and between sections. White space is how the page shows calm, which matches the "get unstuck" promise. |
+| Consistency | One button style, one link style, one spacing scale, one type scale, one corner radius across the page and the thank-you screens. |
+| Hick's law (fewer choices) | One action per screen. No navigation menu above the fold beyond the logo; no second competing button in the hero. |
+| Fitts's law (easy targets) | Tap targets are at least 44×44px. On phones the button is full width and within thumb reach right under the email field. |
+| Readability | Body text at least 16px, lines about 45 to 75 characters wide, line height about 1.5. Short sentences, per brief 5.5. |
+| Motion | Only small, purposeful motion (for example, the form changing to step 2). Respect "reduce motion" settings. No motion that delays reading. |
+
+**How it's checked:** before Emmanuel reviews the page, screenshot it at 375px and at desktop width and go through both tables row by row. Run an automated contrast and accessibility check (for example Lighthouse or axe) and fix anything it flags.
+
 ---
 
 ## 4. Signup flow
