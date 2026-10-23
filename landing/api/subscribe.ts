@@ -1,7 +1,7 @@
 import { createKitClient, type KitClient } from './_lib/kit';
 import { createRateLimiter } from './_lib/rateLimit';
 import { signToken, verifyToken } from './_lib/token';
-import { parseRequest, type Role } from './_lib/validate';
+import { parseRequest, ROLES, type Role } from './_lib/validate';
 
 export const config = {
     runtime: 'edge',
@@ -76,13 +76,17 @@ export async function handleSubscribe(req: Request, deps: SubscribeDeps): Promis
 }
 
 // KIT_ROLE_TAGS is JSON mapping each role to its Kit tag ID, e.g. {"masters":1,"phd":2,...}
-function parseRoleTags(raw: string | undefined): Record<Role, number> | null {
+// Every role must map to a number, or step 2 would fail for that role after saving its fields.
+export function parseRoleTags(raw: string | undefined): Record<Role, number> | null {
+    let parsed: unknown;
     try {
-        const parsed = JSON.parse(raw || '');
-        return typeof parsed === 'object' && parsed !== null ? parsed : null;
+        parsed = JSON.parse(raw || '');
     } catch {
         return null;
     }
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return null;
+    const tags = parsed as Record<string, unknown>;
+    return ROLES.every((role) => typeof tags[role] === 'number') ? (tags as Record<Role, number>) : null;
 }
 
 export async function POST(req: Request): Promise<Response> {

@@ -6,8 +6,8 @@ export const MESSAGES = {
     invalid_email: "That email doesn't look right. Check it and try again.",
     rate_limited: 'Too many tries. Wait a few minutes and try again.',
     upstream: 'Something went wrong. Please try again.',
-    invalid_token: "We couldn't save your answers, but you're still on the list.",
-    saved: "Thanks. You're on the list.",
+    invalid_token: "We couldn't save your answers. You're still signed up: check your inbox and click the link to confirm.",
+    saved: 'Thanks. Now check your inbox and click the link to confirm your spot.',
 } as const;
 
 type Reply = { status: number; body: { token?: string | null; error?: string } };

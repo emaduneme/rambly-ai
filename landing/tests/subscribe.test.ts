@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { handleSubscribe } from '../api/subscribe';
+import { handleSubscribe, parseRoleTags } from '../api/subscribe';
 import { KitError, type KitClient } from '../api/_lib/kit';
 import { signToken } from '../api/_lib/token';
 
@@ -138,4 +138,15 @@ test('step 2 Kit failure is 502', async () => {
   const token = await signToken('ana@uni.edu', SECRET, NOW);
   failWith = new KitError('down', 500);
   expect((await send({ step: 2, token, role: 'phd' })).status).toBe(502);
+});
+
+test('parseRoleTags accepts a map with a number for every role', () => {
+  expect(parseRoleTags(JSON.stringify(ROLE_TAGS))).toEqual(ROLE_TAGS);
+});
+
+test.each([
+  '', 'not json', '[]', '{"masters":1,"phd":2,"faculty":3,"staff_researcher":4}',
+  '{"masters":1,"phd":"2","faculty":3,"staff_researcher":4,"other":5}',
+])('parseRoleTags rejects %j', (raw) => {
+  expect(parseRoleTags(raw)).toBeNull();
 });

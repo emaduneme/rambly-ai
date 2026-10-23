@@ -147,3 +147,8 @@ test('the video button swaps in a privacy-friendly YouTube player on click', () 
   expect(iframe.title).toBe('Rambly demo video');
   expect(document.querySelector('[data-video]')).toBeNull();
 });
+
+test('after step 2 the visitor is still reminded to confirm their email', () => {
+  expect(MESSAGES.saved).toMatch(/confirm/i);
+  expect(MESSAGES.invalid_token).toMatch(/confirm/i);
+});
