@@ -3,10 +3,210 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rambly</title>
+    <title>Rambly: talk through your first draft</title>
+    <meta name="description" content="Stuck on the first draft? Talk it through. Rambly gives you back your own words, organized. Join the waitlist for early access." />
+    <meta property="og:title" content="Rambly: talk through your first draft" />
+    <meta property="og:description" content="Talk through your ideas. Get your own words back, organized. Join the waitlist for early access." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   </head>
   <body class="min-h-screen bg-bg text-ink">
-    <main></main>
+    <a href="#signup" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-surface focus:p-2 focus:rounded-ui">Skip to signup</a>
+
+    <header class="mx-auto flex max-w-5xl items-center px-4 pt-4 sm:px-6 sm:pt-6">
+      <a href="/" class="flex min-h-12 items-center gap-2 rounded-ui" aria-label="Rambly home">
+        <span class="flex size-[36px] items-center justify-center rounded-ui bg-linear-to-br from-accent-from to-accent-to" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" x2="12" y1="19" y2="22" />
+          </svg>
+        </span>
+        <span class="text-lead font-bold">Rambly</span>
+      </a>
+    </header>
+
+    <main>
+      <!-- Hero: one column on phones (text, form, video); text+form left and video right on desktop -->
+      <section class="mx-auto grid max-w-5xl gap-12 px-4 pt-6 pb-24 sm:px-6 sm:pt-12 lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-12" aria-labelledby="headline">
+        <div>
+          <h1 id="headline" class="font-serif text-hero font-bold tracking-tight">Stuck on the first draft? Talk it through.</h1>
+          <p class="mt-4 max-w-[34ch] text-lead text-muted">Talk through your ideas the way you'd explain them to a friend. Rambly gives them back in your own words, organized into a draft you can work with.</p>
+
+          <div id="signup" class="mt-6">
+            <form data-signup novalidate class="max-w-md">
+              <label for="email" class="block text-small font-semibold">Your email</label>
+              <div class="mt-2 flex flex-col gap-2 sm:flex-row">
+                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required
+                  class="min-h-12 w-full rounded-ui border border-line bg-surface px-4 text-body placeholder:text-muted" placeholder="you@university.edu" />
+                <button type="submit"
+                  class="min-h-12 w-full shrink-0 rounded-ui bg-linear-to-br from-accent-from to-accent-to px-6 text-body font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-70 sm:w-auto">Get early access</button>
+              </div>
+              <div class="absolute -left-[9999px]" aria-hidden="true">
+                <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <p class="mt-2 text-small text-muted">Join the waitlist for early access and a founding member price.</p>
+              <p data-status role="status" aria-live="polite" class="mt-2 text-small font-semibold empty:hidden"></p>
+            </form>
+
+            <section data-step2 hidden class="max-w-md rounded-ui border border-line bg-surface p-6" aria-labelledby="step2-title">
+              <h2 id="step2-title" class="text-lead font-semibold">Two quick questions</h2>
+              <p class="mt-1 text-small text-muted">Optional. It helps us invite the right people first.</p>
+              <form data-step2-form class="mt-4">
+                <fieldset>
+                  <legend tabindex="-1" class="text-small font-semibold">What's your role?</legend>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    <label class="choice"><input type="radio" name="role" value="masters" /> Grad student (master's)</label>
+                    <label class="choice"><input type="radio" name="role" value="phd" /> Grad student (PhD)</label>
+                    <label class="choice"><input type="radio" name="role" value="faculty" /> Faculty</label>
+                    <label class="choice"><input type="radio" name="role" value="staff_researcher" /> Staff or researcher</label>
+                    <label class="choice"><input type="radio" name="role" value="other" /> Other</label>
+                  </div>
+                </fieldset>
+                <fieldset class="mt-6">
+                  <legend class="text-small font-semibold">What would you mainly use it for?</legend>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    <label class="choice"><input type="radio" name="use_case" value="drafting" /> Drafting papers or thesis chapters</label>
+                    <label class="choice"><input type="radio" name="use_case" value="ideas" /> Capturing research ideas</label>
+                    <label class="choice"><input type="radio" name="use_case" value="teaching" /> Teaching or lecture prep</label>
+                    <label class="choice"><input type="radio" name="use_case" value="personal" /> Personal notes</label>
+                    <label class="choice"><input type="radio" name="use_case" value="other" /> Other</label>
+                  </div>
+                </fieldset>
+                <div class="mt-6 flex flex-col gap-2 sm:flex-row">
+                  <button type="submit" data-step2-save class="min-h-12 rounded-ui bg-linear-to-br from-accent-from to-accent-to px-6 text-body font-semibold text-white disabled:opacity-70">Save</button>
+                  <button type="button" data-step2-skip class="min-h-12 rounded-ui px-6 text-body font-semibold text-accent-ink underline-offset-4 hover:underline">Skip</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+
+        <div>
+          <button type="button" data-video="BzVev97bpjk" class="group relative block aspect-video w-full overflow-hidden rounded-ui border border-line bg-surface" aria-label="Play the Rambly demo video">
+            <img src="https://i.ytimg.com/vi/BzVev97bpjk/hqdefault.jpg" alt="" loading="lazy" class="size-full object-cover" />
+            <span class="absolute inset-0 m-auto flex size-[64px] items-center justify-center rounded-full bg-ink/80 text-white transition-transform group-hover:scale-105" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+          </button>
+          <p class="mt-2 text-small text-muted">Watch Rambly turn a spoken ramble into an organized note.</p>
+        </div>
+      </section>
+
+      <!-- Three objections, most common first (brief 5.2) -->
+      <section class="border-t border-line" aria-labelledby="objections-title">
+        <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+          <h2 id="objections-title" class="sr-only">What you might be wondering</h2>
+          <ul class="grid gap-12 md:grid-cols-3 md:gap-6">
+            <li>
+              <h3 class="text-lead font-semibold">Your words, not AI's</h3>
+              <p class="mt-2 text-body text-muted">Rambly keeps your ideas and the way you say them. It takes out the ums, smooths the flow and puts things in order. You choose how much it edits.</p>
+            </li>
+            <li>
+              <h3 class="text-lead font-semibold">Your recordings</h3>
+              <p class="mt-2 text-body text-muted">We'll publish Rambly's privacy policy for recordings before anyone gets access. The waitlist only stores your email and the answers you choose to give.</p>
+            </li>
+            <li>
+              <h3 class="text-lead font-semibold">Nothing to set up</h3>
+              <p class="mt-2 text-body text-muted">Just talk the way you'd explain your work to a friend. No outline, no special commands, no training the software first.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="border-t border-line" aria-labelledby="how-title">
+        <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+          <h2 id="how-title" class="font-serif text-title font-bold">How it works</h2>
+          <ol class="mt-12 grid gap-12 md:grid-cols-3 md:gap-6">
+            <li>
+              <span class="flex size-[40px] items-center justify-center rounded-full border border-line bg-surface text-body font-bold" aria-hidden="true">1</span>
+              <h3 class="mt-4 text-lead font-semibold">Talk</h3>
+              <p class="mt-2 text-body text-muted">Record yourself talking through the section you're stuck on, messy as it comes out.</p>
+            </li>
+            <li>
+              <span class="flex size-[40px] items-center justify-center rounded-full border border-line bg-surface text-body font-bold" aria-hidden="true">2</span>
+              <h3 class="mt-4 text-lead font-semibold">Rambly organizes it</h3>
+              <p class="mt-2 text-body text-muted">You get back what you said, cleaned up and in a sensible order.</p>
+            </li>
+            <li>
+              <span class="flex size-[40px] items-center justify-center rounded-full border border-line bg-surface text-body font-bold" aria-hidden="true">3</span>
+              <h3 class="mt-4 text-lead font-semibold">Edit and keep going</h3>
+              <p class="mt-2 text-body text-muted">Paste it into your draft and shape it from there. Editing a page is easier than facing a blank one.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Why talking works -->
+      <section class="border-t border-line" aria-labelledby="why-title">
+        <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+          <h2 id="why-title" class="font-serif text-title font-bold">Why talking works</h2>
+          <p class="mt-4 max-w-[65ch] text-body text-muted">Researchers have studied dictating first drafts, known as the mind-to-paper method, for over a decade. You outline, then say the draft out loud, and in one study even junior researchers produced good first drafts this way.
+            <a href="https://research.regionh.dk/en/publications/mind-to-paper-is-an-effective-method-for-scientific-writing/" class="font-semibold text-accent-ink underline underline-offset-4">Read the study</a></p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="border-t border-line" aria-labelledby="faq-title">
+        <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+          <h2 id="faq-title" class="font-serif text-title font-bold">Questions</h2>
+          <div class="mt-12 grid max-w-[65ch] gap-4">
+            <details class="rounded-ui border border-line bg-surface p-4">
+              <summary class="min-h-12 cursor-pointer content-center text-body font-semibold">How much does it cost?</summary>
+              <p class="mt-2 text-body text-muted">It's free during early access. People on the waitlist get a founding member price when Rambly launches.</p>
+            </details>
+            <details class="rounded-ui border border-line bg-surface p-4">
+              <summary class="min-h-12 cursor-pointer content-center text-body font-semibold">What happens to my recordings?</summary>
+              <p class="mt-2 text-body text-muted">We'll publish Rambly's privacy policy for recordings before anyone gets access. For now, the waitlist only stores your email and the answers you choose to give. <a href="/privacy" class="font-semibold text-accent-ink underline underline-offset-4">Waitlist privacy</a></p>
+            </details>
+            <details class="rounded-ui border border-line bg-surface p-4">
+              <summary class="min-h-12 cursor-pointer content-center text-body font-semibold">Is this an AI writing tool?</summary>
+              <p class="mt-2 text-body text-muted">Not in the "write my paper" sense. Rambly works only with what you say. It cleans up and organizes your words; the ideas and the argument stay yours.</p>
+            </details>
+            <details class="rounded-ui border border-line bg-surface p-4">
+              <summary class="min-h-12 cursor-pointer content-center text-body font-semibold">What can I use it on?</summary>
+              <p class="mt-2 text-body text-muted">Rambly runs in your web browser, on your phone or your computer.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Repeat call to action -->
+      <section class="border-t border-line" aria-labelledby="cta-title">
+        <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+          <h2 id="cta-title" class="font-serif text-title font-bold">Ready to get unstuck?</h2>
+          <p class="mt-2 text-body text-muted">Join the waitlist for early access and a founding member price.</p>
+          <form data-signup novalidate class="mt-6 max-w-md">
+            <label for="email-bottom" class="block text-small font-semibold">Your email</label>
+            <div class="mt-2 flex flex-col gap-2 sm:flex-row">
+              <input id="email-bottom" name="email" type="email" autocomplete="email" inputmode="email" required
+                class="min-h-12 w-full rounded-ui border border-line bg-surface px-4 text-body placeholder:text-muted" placeholder="you@university.edu" />
+              <button type="submit"
+                class="min-h-12 w-full shrink-0 rounded-ui bg-linear-to-br from-accent-from to-accent-to px-6 text-body font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-70 sm:w-auto">Get early access</button>
+            </div>
+            <div class="absolute -left-[9999px]" aria-hidden="true">
+              <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <p data-status role="status" aria-live="polite" class="mt-2 text-small font-semibold empty:hidden"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-12 text-small text-muted sm:flex-row sm:gap-6 sm:px-6">
+        <a href="/privacy" class="underline underline-offset-4">Privacy</a>
+        <span>Contact: [contact email]</span>
+        <span>&copy; 2026 Emmanuel Maduneme</span>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
