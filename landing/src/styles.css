@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Design tokens. Spacing, radius and type come only from here (spec 3.1). */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --color-*: initial;
+  --color-bg: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-ink: #1A1A2E;
+  --color-muted: #5B5B6B;
+  --color-line: #E4E4E0;
+  --color-accent-from: #4F46E5;
+  --color-accent-to: #7C3AED;
+  --color-accent-ink: #4338CA;
+  --color-error: #B42318;
+  --color-white: #FFFFFF;
+  --color-transparent: transparent;
+
+  --spacing: initial;
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-12: 48px;
+  --spacing-24: 96px;
+
+  --radius-*: initial;
+  --radius-ui: 12px;
+  --radius-full: 9999px;
+
+  --text-*: initial;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.5;
+  --text-title: 1.75rem;
+  --text-title--line-height: 1.25;
+  --text-hero: clamp(2.375rem, 7vw, 4rem);
+  --text-hero--line-height: 1.08;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent-from);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
