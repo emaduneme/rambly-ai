@@ -44,7 +44,7 @@ Create a new Vercel project from this repo with **Root Directory** set to `landi
 4. Create one tag per role (Grad student (master's), Grad student (PhD), Faculty, Staff or researcher, Other) and put their IDs in `KIT_ROLE_TAGS`.
 5. Rewrite the confirmation email so it also welcomes people in a few lines. Add your postal address to the email footer.
 
-Until the Kit API check (plan Task 1) is done, `api/_lib/kit.ts` is a stub and signups return an error.
+`scripts/kit-setup.mjs` creates the custom fields and role tags for you and prints the `KIT_ROLE_TAGS` value: `node --env-file=.env.local scripts/kit-setup.mjs`. How Kit's API behaves for signups is recorded in [KIT-CHECK.md](KIT-CHECK.md).
 
 ## Links to share
 
