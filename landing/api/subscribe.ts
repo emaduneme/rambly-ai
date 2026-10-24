@@ -1,4 +1,4 @@
-import { createKitClient, type KitClient } from './_lib/kit';
+import { createKitClient, KitError, type KitClient } from './_lib/kit';
 import { createRateLimiter } from './_lib/rateLimit';
 import { signToken, verifyToken } from './_lib/token';
 import { parseRequest, ROLES, type Role } from './_lib/validate';
@@ -51,6 +51,8 @@ export async function handleSubscribe(req: Request, deps: SubscribeDeps): Promis
             await deps.kit.subscribe(email, { ...utm, signup_date: signupDate }, pageUrl);
         } catch (error) {
             console.error('Kit subscribe failed:', error);
+            // Kit rejects some addresses our pattern lets through (e.g. a trailing dot).
+            if (error instanceof KitError && error.status === 422) return json(400, { error: 'invalid_email' });
             return json(502, { error: 'upstream' });
         }
         return json(200, { ok: true, token: await signToken(email, deps.secret, deps.now()) });

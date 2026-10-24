@@ -150,3 +150,8 @@ test.each([
 ])('parseRoleTags rejects %j', (raw) => {
   expect(parseRoleTags(raw)).toBeNull();
 });
+
+test('Kit rejecting the email address (422) is 400 invalid_email', async () => {
+  failWith = new KitError('bad email', 422);
+  expect(await send({ email: 'ana@uni.edu.' })).toEqual({ status: 400, body: { error: 'invalid_email' } });
+});
