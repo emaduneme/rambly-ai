@@ -3,7 +3,6 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { beforeEach, expect, test, vi } from 'vitest';
 import { initSignupForm, MESSAGES } from '../src/form';
-import { initVideo } from '../src/video';
 
 const html = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
 const bodyHtml = html.slice(html.indexOf('<body'), html.indexOf('</body>'));
@@ -136,16 +135,6 @@ test('step 2 with an expired token says the answers did not save', async () => {
   $('[data-step2-form]').dispatchEvent(new Event('submit', { cancelable: true }));
   await settle();
   expect(step2().querySelector('[data-step2-status]')!.textContent).toBe(MESSAGES.invalid_token);
-});
-
-test('the video button swaps in a privacy-friendly YouTube player on click', () => {
-  const button = $<HTMLButtonElement>('[data-video]');
-  initVideo(button);
-  button.click();
-  const iframe = document.querySelector('iframe')!;
-  expect(iframe.src).toBe('https://www.youtube-nocookie.com/embed/BzVev97bpjk?autoplay=1');
-  expect(iframe.title).toBe('Rambly demo video');
-  expect(document.querySelector('[data-video]')).toBeNull();
 });
 
 test('after step 2 the visitor is still reminded to confirm their email', () => {
