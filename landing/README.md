@@ -13,6 +13,15 @@ A one-page waitlist site for Rambly. It's a separate Vercel project from the app
 | `api/subscribe.ts` | The serverless function that sends signups to Kit |
 | `api/_lib/` | Token, validation, rate limit and Kit client used by the function |
 | `COPY-OPTIONS.md` | Headline and subheadline options to pick from |
+| `src/css/`, `public/images/` | Styles and background images from the design template |
+
+## Design
+
+The layout and styles come from Cruip's free [Simple Light](https://github.com/cruip/tailwind-landing-page-template) template (GPL-3.0; free for our own site, not to be resold or redistributed as a template). Its Next.js components were copied into plain HTML so the page keeps the Vite build, the signup code and its tests. What changed from the template:
+
+- Rambly's copy, logo and signup form replace the template's; the avatar row and testimonial (no real users yet) and the planet illustration are left out.
+- The FAQ uses `<details>` with the template's accordion styling instead of its React accordion.
+- Tailwind 4.2 ignores the template's `[mask-composite:exclude_!important]` class, so it's written `[mask-composite:exclude]!` here.
 
 ## Run it locally
 
