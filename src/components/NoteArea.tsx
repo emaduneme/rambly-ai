@@ -62,10 +62,10 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
   if (!content && !isProcessing) {
     return (
       <div className="w-full max-w-2xl mx-auto px-6 pt-6 sm:pt-10 pb-4 text-center flex flex-col items-center gap-3">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#1A1A2E] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-bold text-ink tracking-tight">
           What's on your mind?
         </h2>
-        <p className="text-gray-400 text-sm sm:text-base max-w-[340px] leading-relaxed">
+        <p className="text-neutral-400 text-sm sm:text-base max-w-[340px] leading-relaxed">
           Click on the mic below to record and we'll polish your thoughts into clean notes.
         </p>
       </div>
@@ -83,10 +83,10 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
           className="flex flex-col items-center gap-4"
         >
           <div className="relative">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 animate-pulse" />
-            <div className="absolute inset-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 animate-ping opacity-20" />
+            <div className="w-12 h-12 rounded-full bg-ink animate-pulse" />
+            <div className="absolute inset-0 w-12 h-12 rounded-full bg-ink animate-ping opacity-20" />
           </div>
-          <p className="text-sm font-medium text-gray-400 tracking-wide">
+          <p className="text-sm font-medium text-neutral-400 tracking-wide">
             {processingStage === 'transcribing' && 'Listening to your thoughts...'}
             {processingStage === 'cleaning' && 'Organizing your notes...'}
             {processingStage === 'polishing' && 'Polishing your note...'}
@@ -123,7 +123,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
         >
           <button
             onClick={onGoBack}
-            className="flex items-center gap-1.5 text-[15px] font-medium text-gray-400 hover:text-indigo-600 transition-colors duration-200 group mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
+            className="flex items-center gap-1.5 text-[15px] font-medium text-neutral-400 hover:text-ink transition-colors duration-200 group mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform duration-200" />
             Back to library
@@ -133,14 +133,14 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
           <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4 mb-6 mt-2">
             {/* Left: Metadata */}
             {(noteDate || contextName) && (
-              <div className="flex items-center gap-3 text-sm text-gray-400">
+              <div className="flex items-center gap-3 text-sm text-neutral-400">
                 {noteDate && (
                   <span className="flex items-center gap-1.5">
                     <Clock size={14} />
                     {formatNoteDate(noteDate)}
                   </span>
                 )}
-                <span className="inline-flex items-center gap-1.5 py-0.5 px-2.5 bg-indigo-50/50 rounded-md text-indigo-500 font-medium">
+                <span className="inline-flex items-center gap-1.5 py-0.5 px-2.5 bg-neutral-100 rounded-md text-neutral-600 font-medium">
                   <Tag size={12} />
                   {contextName || 'Default (Neutral)'}
                 </span>
@@ -154,9 +154,9 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                   <motion.button
                     onClick={() => setIsShowingRaw(!isShowingRaw)}
                     whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 ${isShowingRaw
-                      ? 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100 hover:border-orange-300'
-                      : 'bg-white text-gray-500 hover:text-orange-500 border-gray-200 hover:border-orange-200'
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${isShowingRaw
+                      ? 'bg-ink text-white border-ink'
+                      : 'bg-white text-neutral-500 hover:text-ink border-neutral-200 hover:border-neutral-300'
                       }`}
                   >
                     {isShowingRaw ? 'View Final' : 'View Original'}
@@ -166,7 +166,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                   <motion.button
                     onClick={onRefine}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-white text-gray-600 hover:text-indigo-600 border border-gray-200 hover:border-indigo-200 shadow-sm hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-white text-neutral-600 hover:text-ink border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   >
                     <Sparkles size={16} />
                     Polish further
@@ -175,9 +175,9 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                 <motion.button
                   onClick={onCopy}
                   whileTap={{ scale: 0.93 }}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 ${copied
-                    ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 shadow-sm'
-                    : 'bg-white text-gray-600 hover:text-[#1A1A2E] border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow'
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${copied
+                    ? 'bg-white text-ink border border-ink shadow-sm'
+                    : 'bg-white text-neutral-600 hover:text-ink border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow'
                     }`}
                 >
                   <AnimatePresence mode="wait">
@@ -200,7 +200,7 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
 
           {/* Title Row */}
           {displayTitle && (
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#1A1A2E] tracking-tight leading-tight mb-2">
+            <h1 className="text-4xl sm:text-5xl font-bold text-ink tracking-tight leading-tight mb-2">
               {displayTitle}
             </h1>
           )}
@@ -213,13 +213,13 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
-          className={`prose prose-base sm:prose-lg prose-slate max-w-none
-            prose-headings:text-[#1A1A2E] prose-headings:font-semibold prose-headings:tracking-tight
-            prose-p:text-gray-600 prose-p:leading-relaxed prose-p:text-[17px] sm:prose-p:text-[19px]
-            prose-strong:text-[#1A1A2E] prose-strong:font-semibold
-            prose-li:text-gray-600 prose-li:leading-relaxed
-            prose-a:text-indigo-500
-            prose-code:text-indigo-600 prose-code:bg-indigo-50 prose-code:px-1 prose-code:rounded
+          className={`prose prose-base sm:prose-lg prose-neutral max-w-none
+            prose-headings:text-ink prose-headings:font-semibold prose-headings:tracking-tight
+            prose-p:text-neutral-600 prose-p:leading-relaxed prose-p:text-[17px] sm:prose-p:text-[19px]
+            prose-strong:text-ink prose-strong:font-semibold
+            prose-li:text-neutral-600 prose-li:leading-relaxed
+            prose-a:text-ink prose-a:underline
+            prose-code:text-ink prose-code:bg-neutral-100 prose-code:px-1 prose-code:rounded
             ${!onGoBack ? 'mt-6' : ''}`} // Add margin top if it's a new live note without the header
         >
           <ReactMarkdown
@@ -229,8 +229,8 @@ export const NoteArea: React.FC<NoteAreaProps> = ({
                 const childStr = String(children);
                 if (childStr.includes('TL;DR') || childStr.startsWith('**TL;DR')) {
                   return (
-                    <div className="bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-100 rounded-2xl px-5 py-4 mb-8 -mx-2 text-[16px]">
-                      <p className="m-0 text-[#1A1A2E] font-medium" {...props}>{children}</p>
+                    <div className="bg-white border border-neutral-200 rounded-2xl px-5 py-4 mb-8 -mx-2 text-[16px]">
+                      <p className="m-0 text-ink font-medium" {...props}>{children}</p>
                     </div>
                   );
                 }

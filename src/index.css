@@ -2,18 +2,41 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "SF Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Brand colours. See docs/BRAND.md. */
+  --color-ink: #0A0A0A;
+  --color-muted: #525252;
+  --color-line: #E5E5E5;
+  --color-accent: #8C5A86;
+  --color-accent-hover: #774B72;
+  --color-accent-tint: #F1E8F0;
+}
+
+html {
+  background-color: #FFFFFF;
 }
 
 body {
   @apply antialiased;
-  background-color: #FAFAF8;
-  background-image: repeating-conic-gradient(rgba(0, 0, 0, 0.10) 0% 25%, transparent 0% 70%);
-  background-size: 32px 32px;
-  color: #1A1A2E;
+  color: var(--color-ink);
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
+}
+
+/* The net: a faint hairline grid behind every page. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
 }
 
 /* Smooth scrolling */
@@ -37,12 +60,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E0E0DE;
+  background: #E5E5E5;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C8C8C6;
+  background: #A3A3A3;
 }
 
 /* Selection color */
@@ -85,4 +108,8 @@ textarea {
   .pb-safe {
     padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
   }
+}
+
+:focus-visible {
+  outline-color: var(--color-accent);
 }

@@ -251,7 +251,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAF8] flex flex-col font-sans text-[#1A1A2E]">
+    <div className="min-h-screen flex flex-col font-sans text-ink">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -278,7 +278,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-                className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg shadow-red-100/50 flex justify-between items-center gap-3"
+                className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg flex justify-between items-center gap-3"
                 role="alert"
               >
                 <p className="text-sm font-medium flex-1">{error || apiError}</p>

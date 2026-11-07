@@ -95,7 +95,7 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
 
     return (
         <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pt-8 pb-56">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6 px-1 text-center">
+            <h2 className="text-sm font-semibold text-neutral-400 uppercase tracking-widest mb-6 px-1 text-center">
                 Recent Thoughts
             </h2>
 
@@ -126,21 +126,21 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
                                 role="button"
                                 tabIndex={0}
                                 aria-label={`Open note: ${parsed.title}`}
-                                className="w-full bg-white rounded-[24px] p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 group relative flex flex-col min-h-[220px] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
+                                className="w-full bg-white rounded-[24px] p-6 shadow-sm border border-neutral-100 cursor-pointer hover:shadow-lg hover:border-neutral-200 hover:-translate-y-1 transition-all duration-300 group relative flex flex-col min-h-[220px] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                             >
                                 {/* Side transcript tail */}
                                 {note.rawContent && (
                                     <button
                                         onClick={(e) => handleToggleRaw(e, note.id)}
                                         aria-label={isShowingRaw ? 'View final note' : 'View original transcript'}
-                                        className="absolute bottom-8 -right-[2px] px-3 py-2 bg-gradient-to-br from-indigo-500 to-violet-500 text-white rounded-l-xl shadow-md text-xs font-semibold tracking-wide opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-300 ease-out flex items-center gap-1.5 hover:shadow-indigo-200/50 hover:shadow-lg z-10 [writing-mode:vertical-rl] [text-orientation:mixed] sm:[writing-mode:horizontal-tb] sm:rounded-l-md sm:rounded-r-sm min-h-[100px] sm:min-h-0 min-w-[28px]"
+                                        className="absolute bottom-8 -right-[2px] px-3 py-2 bg-ink text-white rounded-l-xl shadow-md text-xs font-semibold tracking-wide opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-300 ease-out flex items-center gap-1.5 hover:shadow-lg z-10 [writing-mode:vertical-rl] [text-orientation:mixed] sm:[writing-mode:horizontal-tb] sm:rounded-l-md sm:rounded-r-sm min-h-[100px] sm:min-h-0 min-w-[28px]"
                                     >
                                         {isShowingRaw ? 'View Final' : 'View Original'}
                                     </button>
                                 )}
 
                                 {/* Top Date */}
-                                <div className="text-center text-gray-400 text-xs tracking-wide mb-3">
+                                <div className="text-center text-neutral-400 text-xs tracking-wide mb-3">
                                     {dateString}
                                 </div>
 
@@ -150,34 +150,34 @@ export const Library: React.FC<LibraryProps> = ({ onSelectNote, triggerRefresh }
                                     aria-label={confirmingDeleteId === note.id ? 'Confirm delete note' : 'Delete note'}
                                     className={`absolute top-4 right-4 p-1.5 rounded-lg transition-all duration-200 text-xs font-medium z-10 ${confirmingDeleteId === note.id
                                         ? 'bg-red-50 text-red-500 border border-red-200 opacity-100'
-                                        : 'text-gray-300 hover:text-red-500 hover:bg-red-50 opacity-100 sm:opacity-0 sm:group-hover:opacity-100'
+                                        : 'text-neutral-300 hover:text-red-500 hover:bg-red-50 opacity-100 sm:opacity-0 sm:group-hover:opacity-100'
                                         }`}
                                 >
                                     {confirmingDeleteId === note.id ? 'Delete?' : <Trash2 size={16} />}
                                 </button>
 
                                 {/* Title */}
-                                <h3 className="text-center text-xl sm:text-[22px] font-bold text-[#1A1A2E] leading-tight px-4 mt-1 tracking-tight">
+                                <h3 className="text-center text-xl sm:text-[22px] font-bold text-ink leading-tight px-4 mt-1 tracking-tight">
                                     {parsed.title}
                                 </h3>
 
                                 {/* Orange Line */}
-                                <div className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full mx-auto my-4 shrink-0 transition-all duration-300 group-hover:w-12 shadow-sm" />
+                                <div className="w-8 h-1 bg-neutral-200 rounded-full mx-auto my-4 shrink-0 transition-all duration-300 group-hover:w-12" />
 
                                 {/* Content Body */}
-                                <div className="text-[15px] sm:text-base text-gray-600 leading-relaxed font-light line-clamp-4 flex-1 text-left sm:text-center mb-6">
+                                <div className="text-[15px] sm:text-base text-neutral-600 leading-relaxed line-clamp-4 flex-1 text-left sm:text-center mb-6">
                                     {parsed.body}
                                 </div>
 
                                 {/* Footer Icons / Tags */}
                                 <div className="flex items-center justify-between mt-auto">
                                     {/* Tag */}
-                                    <div className={`inline-flex items-center justify-center font-bold ${note.contextName === 'Default (Neutral)' ? 'w-8 h-8 rounded-full text-lg border border-gray-200 border-dashed text-gray-400 font-medium' : 'px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider bg-slate-200 text-slate-800'}`}>
+                                    <div className={`inline-flex items-center justify-center font-bold ${note.contextName === 'Default (Neutral)' ? 'w-8 h-8 rounded-full text-lg border border-neutral-200 border-dashed text-neutral-400 font-medium' : 'px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider bg-neutral-100 text-neutral-700'}`}>
                                         {note.contextName === 'Default (Neutral)' ? '+' : note.contextName}
                                     </div>
 
                                     {/* Save Icon purely decorative for visual match */}
-                                    <div className="text-gray-200">
+                                    <div className="text-neutral-200">
                                         <Save size={20} className="fill-current opacity-30" strokeWidth={1} />
                                     </div>
                                 </div>
