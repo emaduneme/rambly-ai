@@ -70,11 +70,8 @@ export const Footer: React.FC<FooterProps> = ({
         const dataIndex = Math.floor((i / barCount) * bufferLength);
         const barHeight = (dataArray[dataIndex] / 255) * (canvas.height * 0.7);
 
-        const gradient = ctx.createLinearGradient(0, centerY - barHeight / 2, 0, centerY + barHeight / 2);
-        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.8)');
-        gradient.addColorStop(1, 'rgba(139, 92, 246, 0.6)');
+        ctx.fillStyle = '#0A0A0A';
 
-        ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.roundRect(
           startX + i * (barWidth + gap),
@@ -103,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 pt-3 pb-safe sm:pt-5 z-50 flex justify-center pointer-events-none">
-      <div className="bg-white/95 backdrop-blur-2xl border border-gray-200/60 rounded-2xl shadow-2xl shadow-indigo-900/5 p-3 sm:p-5 flex flex-col items-center pointer-events-auto w-full max-w-[95%] sm:max-w-lg transition-all duration-300">
+      <div className="bg-white/95 backdrop-blur-2xl border border-neutral-200/60 rounded-2xl shadow-2xl p-3 sm:p-5 flex flex-col items-center pointer-events-auto w-full max-w-[95%] sm:max-w-lg transition-all duration-300">
 
         {/* Visualizer */}
         <AnimatePresence>
@@ -135,7 +132,7 @@ export const Footer: React.FC<FooterProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
-              className="mb-2 sm:mb-3 font-mono text-base sm:text-lg font-medium text-indigo-500 tabular-nums"
+              className="mb-2 sm:mb-3 font-mono text-base sm:text-lg font-medium text-ink tabular-nums"
             >
               {formatTime(recordingTime)}
             </motion.div>
@@ -149,12 +146,12 @@ export const Footer: React.FC<FooterProps> = ({
               onClick={onClear}
               aria-label={isProcessing ? "Cancel processing" : hasContent ? "Start a new note" : "Clear"}
               className={cn(
-                "px-3 py-2 rounded-2xl transition-all duration-200 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2",
+                "px-3 py-2 rounded-2xl transition-all duration-200 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
                 isProcessing
                   ? "text-red-400 hover:text-red-600 hover:bg-red-50"
                   : hasContent && !isRecording
-                    ? "text-gray-500 hover:text-[#1A1A2E] hover:bg-gray-100"
-                    : "text-gray-200 cursor-not-allowed"
+                    ? "text-neutral-500 hover:text-ink hover:bg-neutral-100"
+                    : "text-neutral-200 cursor-not-allowed"
               )}
               title={isProcessing ? "Cancel Processing" : hasContent ? "New Note" : "Clear"}
               disabled={isRecording || (!hasContent && !isProcessing)}
@@ -183,7 +180,7 @@ export const Footer: React.FC<FooterProps> = ({
                 initial={{ scale: 1, opacity: 0.5 }}
                 animate={{ scale: 1.4, opacity: 0 }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: 'easeOut' }}
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500"
+                className="absolute inset-0 rounded-full bg-accent"
               />
             )}
             <button
@@ -192,12 +189,12 @@ export const Footer: React.FC<FooterProps> = ({
               aria-label={isRecording ? "Stop recording" : "Start recording"}
               aria-pressed={isRecording}
               className={cn(
-                "relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2",
+                "relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
                 isRecording
-                  ? "bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-200"
+                  ? "bg-accent text-white"
                   : isProcessing
-                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300"
+                    ? "bg-neutral-200 text-neutral-400 cursor-not-allowed"
+                    : "bg-accent text-white hover:bg-accent-hover"
               )}
             >
               {isRecording ? (
@@ -218,11 +215,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        <div className="mt-3 text-xs text-gray-400 font-medium" role="status" aria-live="polite">
+        <div className="mt-3 text-xs text-neutral-400 font-medium" role="status" aria-live="polite">
           {isProcessing
-            ? 'Processing your thoughts...'
+            ? 'Organizing...'
             : isRecording
-              ? 'Recording — tap to stop'
+              ? 'Recording. Tap to stop.'
               : 'Tap to record'}
         </div>
       </div>
