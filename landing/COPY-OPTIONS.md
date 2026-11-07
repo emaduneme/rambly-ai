@@ -1,6 +1,11 @@
 # Copy options
 
-Draft copy for Emmanuel to pick from and edit. Option 1 of each is on the page now. Rules: brief 5.5 (short sentences, "your words", no "AI writes for you", nothing we can't back up).
+Draft copy for Emmanuel to pick from and edit. Rules: brief 5.5 (short sentences, "your words", no "AI writes for you", nothing we can't back up).
+
+## Chosen (live on the page)
+
+- **Headline:** Can't start writing? Your first draft is already in your head. (Emmanuel's pick: options 5 and 6 combined.)
+- **Subheadline:** option 1.
 
 ## Headlines
 
