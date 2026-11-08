@@ -70,6 +70,23 @@ Everything else stays black, grey or white. One solid filled element per view is
 
 Red stays on Delete because it means "this can't be undone". Do not use red decoratively.
 
+### Dark scheme (waitlist page)
+
+The waitlist page follows the device setting. Mauve and white do not change. The demo stays a light screen in both.
+
+| Name | Light | Dark |
+|---|---|---|
+| Background | `#FFFFFF` | `#0A0A0A` |
+| Surface (fields, chips) | `#FFFFFF` | `#141414` |
+| Ink | `#0A0A0A` | `#FFFFFF` |
+| Muted | `#525252` | `#A3A3A3` |
+| Line | `#E5E5E5` | `#262626` |
+| Accent tint | `#F1E8F0` | `#2A1D29` |
+| Error | `#B42318` | `#F97066` |
+| Net | black at 0.035 | white at 0.04 |
+
+Mauve on black is 3.7:1. Use it for the large headline word only, never for small text.
+
 ---
 
 ## 3. Type

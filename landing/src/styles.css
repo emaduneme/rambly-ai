@@ -44,8 +44,27 @@
   --text-hero--line-height: 1.08;
 }
 
+/* Dark scheme: follows the device setting (docs/BRAND.md, "Dark scheme").
+   Mauve, white and the demo stay the same in both schemes. */
+:root {
+  --net: rgba(10, 10, 10, 0.035);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0A0A0A;
+    --color-surface: #141414;
+    --color-ink: #FFFFFF;
+    --color-muted: #A3A3A3;
+    --color-line: #262626;
+    --color-accent-tint: #2A1D29;
+    --color-error: #F97066;
+    --net: rgba(255, 255, 255, 0.04);
+  }
+}
+
 @layer base {
   html {
+    color-scheme: light dark;
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
@@ -59,8 +78,8 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(10, 10, 10, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10, 10, 10, 0.035) 1px, transparent 1px);
+      linear-gradient(var(--net) 1px, transparent 1px),
+      linear-gradient(90deg, var(--net) 1px, transparent 1px);
     background-size: 24px 24px;
     background-position: -1px -1px;
   }
@@ -103,6 +122,12 @@
 
 /* ---------- Interactive demo (src/demo.ts, spec in DEMO.md) ---------- */
 .demo-frame {
+  /* The demo is a light product screen in both schemes. */
+  --color-surface: #FFFFFF;
+  --color-ink: #0A0A0A;
+  --color-muted: #525252;
+  --color-line: #E5E5E5;
+  color-scheme: light;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--color-line);
