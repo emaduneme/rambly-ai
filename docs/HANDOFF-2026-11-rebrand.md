@@ -67,7 +67,7 @@ Reference images: `docs/brand/` (logo concepts, waitlist page, demo frames, app 
 Ask Emmanuel before doing these. Do not guess.
 
 1. ~~**Contact email.**~~ Done: `rearguardonline@gmail.com` (PR #3).
-2. **Privacy page owner.** `landing/privacy.html` says "Rambly is run by Emmanuel Maduneme", while the copyright says Rearguard Online. Should they match?
+2. ~~**Privacy page owner.**~~ Done: copyright now says Emmanuel Maduneme everywhere, matching the privacy page.
 3. **App start page copy.** `src/components/Landing.tsx` still says "Turn messy thoughts into polished notes with Rambly." plus a longer sentence. Trim to match the waitlist page?
 4. **Demo text on phones.** About 9px on a 390px-wide screen. Check with real people. Enlarge if needed.
 5. **Privacy reassurance.** The FAQ line about recordings was removed with the FAQ. Add one short line under the button if testers ask.

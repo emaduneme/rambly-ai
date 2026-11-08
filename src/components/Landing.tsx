@@ -58,7 +58,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart }) => {
 
             {/* Simple Footer */}
             <footer className="w-full py-8 sm:py-12 mt-20 flex items-center justify-center text-neutral-400 text-sm">
-                <p>&copy; 2026 Rearguard Online</p>
+                <p>&copy; 2026 Emmanuel Maduneme</p>
             </footer>
 
         </div>

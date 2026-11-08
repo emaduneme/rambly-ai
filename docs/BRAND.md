@@ -151,7 +151,7 @@ Current lines:
 | Subtitle | Say it. Rambly writes it down. |
 | Button | Get early access |
 | Step 2 title | Optional: two taps |
-| Copyright | © 2026 Rearguard Online |
+| Copyright | © 2026 Emmanuel Maduneme |
 
 ---
 

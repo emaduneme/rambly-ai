@@ -11,7 +11,7 @@ One screen, top to bottom:
 3. Subtitle: "Say it. Rambly writes it down."
 4. Email field + "Get early access" button (Mauve).
 5. Interactive demo on the right (below the form on phones). See `DEMO.md`.
-6. Footer: Privacy link, contact email (rearguardonline@gmail.com), "© 2026 Rearguard Online".
+6. Footer: Privacy link, contact email (rearguardonline@gmail.com), "© 2026 Emmanuel Maduneme".
 
 The page follows the device's light or dark setting. Dark colours are in `src/styles.css` and `docs/BRAND.md`. The demo stays light in both.
 
