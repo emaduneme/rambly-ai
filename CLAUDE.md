@@ -75,6 +75,5 @@ Run `/check` to do all of the above in one go.
 
 ## Known gaps (do not "fix" silently, ask first)
 
-- Footer shows `Contact: [contact email]`. Emmanuel has not chosen the address yet.
 - `landing/privacy.html` says "Rambly is run by Emmanuel Maduneme". Copyright says Rearguard Online. He has not decided whether these should match.
 - The app's start page (`src/components/Landing.tsx`) still has the longer copy. The waitlist page was trimmed; the app page was not.

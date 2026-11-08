@@ -66,7 +66,7 @@ Reference images: `docs/brand/` (logo concepts, waitlist page, demo frames, app 
 
 Ask Emmanuel before doing these. Do not guess.
 
-1. **Contact email.** Footer on all three waitlist pages shows `Contact: [contact email]`.
+1. ~~**Contact email.**~~ Done: `rearguardonline@gmail.com` (PR #3).
 2. **Privacy page owner.** `landing/privacy.html` says "Rambly is run by Emmanuel Maduneme", while the copyright says Rearguard Online. Should they match?
 3. **App start page copy.** `src/components/Landing.tsx` still says "Turn messy thoughts into polished notes with Rambly." plus a longer sentence. Trim to match the waitlist page?
 4. **Demo text on phones.** About 9px on a 390px-wide screen. Check with real people. Enlarge if needed.
@@ -75,8 +75,8 @@ Ask Emmanuel before doing these. Do not guess.
 7. **Logo files for other uses.** Only SVGs exist. Still needed: PNG sizes, `favicon.ico`, Apple touch icon, a wordmark lockup, social avatar.
 8. **README screenshot.** `public/rambly-git-readme image.png` still shows the old indigo look.
 9. **Trademark.** No trademark search was done on the mark or the name.
-10. **Dark mode.** The README lists dark mode as a feature; the new palette has no dark variant yet.
-11. **Push and PR.** The branch is local only. Emmanuel has not yet asked to push.
+10. ~~**Dark mode.**~~ Done for the waitlist page: follows the device (PR #3). The app has no dark variant yet.
+11. ~~**Push and PR.**~~ Done: merged in PR #3.
 
 ---
 
