@@ -57,6 +57,7 @@ Give every channel its own link so the numbers can be split by source:
 | Facebook groups | `?utm_source=facebook&utm_medium=group&utm_campaign=<group>` |
 | YouTube video | `?utm_source=youtube&utm_medium=video&utm_campaign=demo` |
 | SEMO flyers | `?utm_source=semo&utm_medium=flyer&utm_campaign=<location>` |
+| LinkedIn post | `?utm_source=linkedin&utm_medium=post&utm_campaign=launch` |
 | Personal network | `?utm_source=network&utm_medium=<platform>` |
 
 ## Email routine

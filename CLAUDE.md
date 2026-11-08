@@ -2,7 +2,7 @@
 
 Rambly turns spoken rambles into organized writing. You talk. Rambly transcribes it, removes the filler, and gives your own words back in order. One recording can fan out into several outputs: a cleaned note, action items, a calendar (.ics) file, and the raw transcript.
 
-Owner: Emmanuel Maduneme. The brand owner is Rearguard Online (it appears in every copyright line).
+Owner: Emmanuel Maduneme. He is named in every copyright line and on the privacy page. Rambly is not a registered business yet.
 
 ## Read these first
 
@@ -75,6 +75,4 @@ Run `/check` to do all of the above in one go.
 
 ## Known gaps (do not "fix" silently, ask first)
 
-- Footer shows `Contact: [contact email]`. Emmanuel has not chosen the address yet.
-- `landing/privacy.html` says "Rambly is run by Emmanuel Maduneme". Copyright says Rearguard Online. He has not decided whether these should match.
 - The app's start page (`src/components/Landing.tsx`) still has the longer copy. The waitlist page was trimmed; the app page was not.
